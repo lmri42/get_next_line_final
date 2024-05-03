@@ -6,7 +6,7 @@
 /*   By: luribero <luribero@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 01:59:48 by luribero          #+#    #+#             */
-/*   Updated: 2024/05/02 19:57:37 by luribero         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:46:39 by luribero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	reader(int fd, char **line, int *finish)
 	if (c_read < 0)
 		*finish = 2;
 	else if (c_read < BUFFER_SIZE)
-		*finish = 1;
+		*finish = 3;
 	if (c_read > 0)
 	{
 		buff[c_read] = '\0';
@@ -99,13 +99,19 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (r.txt != NULL)
 		line = r.txt;
+	r.txt = NULL;
 	while ((!ft_strchr(line, '\n')) && (r.e == 0))
 	{
 		reader(fd, &line, &r.e);
 	}
-	if (r.e == 0)
-		trimmer(&r.txt, &line);
-	else if (r.e == 2)
+	if (r.e == 2)
 		ft_error(&r.txt, &r.e, &line);
+	else if (ft_strchr(line, '\n') != NULL)
+		trimmer(&r.txt, &line);
+	if (r.e == 3 && (!line || !(*line)))
+	{
+		r.e = 1;
+		return (NULL);
+	}
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: luribero <luribero@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 00:02:02 by luribero          #+#    #+#             */
-/*   Updated: 2024/05/02 19:53:31 by luribero         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:14:38 by luribero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ struct s_remember
 };
 //FUNCTION PROTOTYPES:
 
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+
 int		ft_strlen(char *txt);
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t n);
-
-void	*ft_calloc(size_t count, size_t size);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 
